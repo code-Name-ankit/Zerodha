@@ -44,8 +44,9 @@ function Navbar() {
               <li class="nav-item">
                 <Link 
                   style={{ textDecoration: "none" }}
+                   to="/"
                    onClick={() => handleMenuClick(0)}
-                class="nav-link active" to="/Signup">
+                class="nav-link active">
                   <p className={selectedMenu === 0 ? activeMenuClass : menuClass}>
                   Signup
                   </p>
@@ -54,8 +55,9 @@ function Navbar() {
               <li class="nav-item">
                 <Link 
                  style={{ textDecoration: "none" }}
+                 to="/About"
                  onClick={() => handleMenuClick(1)}
-                class="nav-link active" to="/About">
+                class="nav-link active" >
                   <p className={selectedMenu === 1 ? activeMenuClass : menuClass}>
                   About
                   </p>
@@ -64,8 +66,9 @@ function Navbar() {
               <li class="nav-item">
                 <Link 
                  style={{ textDecoration: "none" }}
+                 to="/Product"
                 onClick={() => handleMenuClick(2)}
-                class="nav-link active" to="/Product">
+                class="nav-link active" >
                   <p className={selectedMenu === 2 ? activeMenuClass : menuClass}>
                   Product
                   </p>
@@ -74,8 +77,9 @@ function Navbar() {
               <li class="nav-item">
                 <Link 
                  style={{ textDecoration: "none" }}
+                 to="/Pricing"
                 onClick={() => handleMenuClick(3)}
-                class="nav-link active" to="/Pricing">
+                class="nav-link active" >
                   <p className={selectedMenu === 3 ? activeMenuClass : menuClass}>
                   Pricing
                   </p>
@@ -84,8 +88,9 @@ function Navbar() {
               <li class="nav-item">
                 <Link 
                  style={{ textDecoration: "none" }}
+                 to="/Support"
                 onClick={() => handleMenuClick(4)}
-                class="nav-link active" to="/Support">
+                class="nav-link active" >
                   <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>
                   Support
                   </p>
