@@ -845,4 +845,9 @@ hr {
 }
 
 
+.delete{
+  border: 1px solid black;
+  cursor: pointer;
+  background: rgb(243, 243, 243);
+}
 

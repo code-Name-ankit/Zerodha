@@ -72,8 +72,7 @@ const WatchList = () => {
 
 export default WatchList;
 
-
-  /* watchLiat all stock color and up down ...  */
+/* watchLiat all stock color and up down ...  */
 
 const WatchListItem = ({ stock }) => {
   const [showWatchlistActions, setShowWatchlistActions] = useState(false);
@@ -105,8 +104,7 @@ const WatchListItem = ({ stock }) => {
   );
 };
 
-
-  /* watchLiat hower effect -  show buy sell ....  */
+/* watchLiat hower effect -  show buy sell ....  */
 
 const WatchListActions = ({ uid }) => {
   const generalContext = useContext(GeneralContext);
@@ -116,16 +114,13 @@ const WatchListActions = ({ uid }) => {
   };
 
   const deleteOrder = async () => {
-  try {
-    await axios.delete(`http://localhost:3002/sellOrder/${uid}`);
-    alert("Order Deleted");
-    
-      } catch (err) {
-    console.error("Delete error", err);
-  }
-};
-
-
+    try {
+      await axios.delete(`http://localhost:3002/sellOrder/${uid}`);
+      alert("Order Deleted");
+    } catch (err) {
+      console.error("Delete error", err);
+    }
+  };
 
   return (
     <span className="actions">
@@ -144,9 +139,19 @@ const WatchListActions = ({ uid }) => {
           placement="top"
           arrow
           TransitionComponent={Grow}
-            onClick={deleteOrder}
         >
           <button className="sell">Sell</button>
+        </Tooltip>
+        <Tooltip
+          title="Delete"
+          placement="top"
+          arrow
+          TransitionComponent={Grow}
+          onClick={deleteOrder}
+        >
+          <button className="delete">
+            <i class="fa-solid fa-trash"></i>
+          </button>
         </Tooltip>
         <Tooltip
           title="Analytics (A)"
