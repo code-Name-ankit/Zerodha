@@ -59,6 +59,7 @@ app.post("/newOrder", async (req, res) => {
   res.send("Order saved!");
 });
 
+//WatchList
 app.delete("/sellOrder/:name", async (req, res) => {
   try {
     const deletedOrder = await Order.findOneAndDelete({
