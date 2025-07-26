@@ -17,10 +17,12 @@ const Orders = () => {
       const res = await axios.delete(`http://localhost:3002/sellOrder/${name}`);
 
       if (res.status === 200) {
-        setMessage(res.data.message); 
+        setMessage(res.data.message);
         setError("");
+        setTimeout(() => {
+          setMessage("");
+        }, 2000);
 
-        
         const refreshed = await axios.get("http://localhost:3002/allOrders");
         setAallOrders(refreshed.data);
       }
@@ -31,6 +33,9 @@ const Orders = () => {
         setError("Failed to delete order");
       }
       setMessage("");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
     }
   };
 
@@ -61,7 +66,9 @@ const Orders = () => {
                 <td>{stock.price}</td>
                 <td>{stock.mode}</td>
                 <td>
-                  <button onClick={() => deleteOrder(stock.name)}>Delete</button>
+                  <button onClick={() => deleteOrder(stock.name)}>
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
