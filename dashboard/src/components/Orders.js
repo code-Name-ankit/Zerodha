@@ -3,48 +3,73 @@ import axios from "axios";
 
 const Orders = () => {
   const [allOrders, setAallOrders] = useState([]);
-  
-  
-    useEffect(() => {
-      axios.get("http://localhost:3002/allOrders").then((res) => {
-        // console.log(res.data);
-        setAallOrders(res.data);
-      });
-    }, []);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    axios.get("http://localhost:3002/allOrders").then((res) => {
+      setAallOrders(res.data);
+    });
+  }, []);
+
+  const deleteOrder = async (name) => {
+    try {
+      const res = await axios.delete(`http://localhost:3002/sellOrder/${name}`);
+
+      if (res.status === 200) {
+        setMessage(res.data.message); 
+        setError("");
+
+        
+        const refreshed = await axios.get("http://localhost:3002/allOrders");
+        setAallOrders(refreshed.data);
+      }
+    } catch (err) {
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Failed to delete order");
+      }
+      setMessage("");
+    }
+  };
 
   return (
-   <>
-         <h3 className="title">Orders ({allOrders.length})</h3>
-   
-         <div className="order-table">
-           <table>
-             <tr>
-               <th>name</th>
-               <th>qty.</th>
-               <th>price</th>
-               <th>mode</th>
-              
-             </tr>
-   
-             {allOrders.map((stock, index) => {
-                 
-               return (
-                 <tr key={index}>
-                   <td>{stock.name}</td>
-                   <td>{stock.qty}</td>
-                    <td>{stock.price}</td>
-                     <td>{stock.mode}</td>
-                   
-                 </tr>
-               );
-             })}
-             
-           </table>
-         </div>
-   
-         
-             </>
-     );
-   };
+    <>
+      <h3 className="title">Orders ({allOrders.length})</h3>
+
+      {/* Show messages */}
+      {message && <p style={{ color: "green" }}>{message}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      <div className="order-table">
+        <table>
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>qty.</th>
+              <th>price</th>
+              <th>mode</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allOrders.map((stock, index) => (
+              <tr key={index}>
+                <td>{stock.name}</td>
+                <td>{stock.qty}</td>
+                <td>{stock.price}</td>
+                <td>{stock.mode}</td>
+                <td>
+                  <button onClick={() => deleteOrder(stock.name)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+};
 
 export default Orders;

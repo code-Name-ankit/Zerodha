@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import axios from "axios";
+
 
 import GeneralContext from "./GeneralContext";
 
@@ -113,14 +113,7 @@ const WatchListActions = ({ uid }) => {
     generalContext.openBuyWindow(uid);
   };
 
-  const deleteOrder = async () => {
-    try {
-      await axios.delete(`http://localhost:3002/sellOrder/${uid}`);
-      alert("Order Deleted");
-    } catch (err) {
-      console.error("Delete error", err);
-    }
-  };
+  
 
   return (
     <span className="actions">
@@ -142,17 +135,7 @@ const WatchListActions = ({ uid }) => {
         >
           <button className="sell">Sell</button>
         </Tooltip>
-        <Tooltip
-          title="Delete"
-          placement="top"
-          arrow
-          TransitionComponent={Grow}
-          onClick={deleteOrder}
-        >
-          <button className="delete">
-            <i class="fa-solid fa-trash"></i>
-          </button>
-        </Tooltip>
+        
         <Tooltip
           title="Analytics (A)"
           placement="top"
