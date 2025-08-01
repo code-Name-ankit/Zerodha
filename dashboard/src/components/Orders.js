@@ -66,7 +66,7 @@ const Orders = () => {
                 <td>{stock.price}</td>
                 <td>{stock.mode}</td>
                 <td>
-                  <button onClick={() => deleteOrder(stock.name)}>
+                  <button onClick={() => deleteOrder(stock.name)} className="delete-btn">
                     Delete
                   </button>
                 </td>

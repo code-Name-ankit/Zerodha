@@ -851,3 +851,12 @@ hr {
   background: rgb(243, 243, 243);
 }
 
+.delete-btn{
+background-color:#ff5722;
+border: none;
+height: 30px;
+width: 70px;
+border-radius: 0.7rem;
+color: white;
+
+}
